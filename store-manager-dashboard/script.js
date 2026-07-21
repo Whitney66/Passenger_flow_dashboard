@@ -3,12 +3,16 @@ const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
 const dateBtn = $('#dateBtn');
 const storeBtn = $('#storeBtn');
+const areaBtn = $('#areaBtn');
 const searchBtn = $('#searchBtn');
 const metricBtn = $('#metricBtn');
+const salesPeriodBtn = $('#salesPeriodBtn');
 const datePanel = $('#datePanel');
 const storePanel = $('#storePanel');
+const areaPanel = $('#areaPanel');
 const searchPanel = $('#searchPanel');
 const metricPanel = $('#metricPanel');
+const salesPeriodPanel = $('#salesPeriodPanel');
 const dimensionPanel = $('#dimensionPanel');
 const periodLabel = $('#periodLabel');
 const salesModeLabel = $('#salesModeLabel');
@@ -16,7 +20,6 @@ const trafficMetricLabel = $('#trafficMetricLabel');
 const searchDimBtn = $('#searchDimBtn');
 const searchInput = $('#searchInput');
 const searchSubmit = $('#searchSubmit');
-const areaFilter = $('#areaFilter');
 const detailTable = $('#detailTable');
 const trafficChart = $('#trafficChart');
 const chartTooltip = $('#chartTooltip');
@@ -109,7 +112,8 @@ function rowsForDimension() {
 }
 
 function renderTable() {
-  areaFilter.classList.toggle('hidden', !(state.store.includes('[7222]') && state.dimension === '柜组'));
+  areaBtn.classList.toggle('active', state.area !== '全部');
+  areaBtn.innerHTML = `${state.area === '全部' ? '区域类型' : state.area} <span>▼</span>`;
   const head = columns[state.dimension].map((item) => `<th>${item}</th>`).join('');
   const body = rowsForDimension().map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`).join('');
   detailTable.innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body}</tbody>`;
@@ -118,8 +122,10 @@ function renderTable() {
 function hidePanels() {
   datePanel.classList.add('hidden');
   storePanel.classList.add('hidden');
+  areaPanel.classList.add('hidden');
   searchPanel.classList.add('hidden');
   metricPanel.classList.add('hidden');
+  salesPeriodPanel.classList.add('hidden');
   dimensionPanel.classList.add('hidden');
 }
 
@@ -143,6 +149,7 @@ function setStoreLabel(label) {
   storeBtn.innerHTML = `${shortLabel} <span>▼</span>`;
   storeBtn.title = label;
   storeBtn.classList.toggle('active', label !== '所有门店');
+  if (label.includes('[7222]')) setDimension('柜组');
   renderTable();
 }
 
@@ -167,8 +174,10 @@ dateButtons.forEach((button) => {
 
 dateBtn.addEventListener('click', () => toggle(datePanel));
 storeBtn.addEventListener('click', () => toggle(storePanel));
+areaBtn.addEventListener('click', () => toggle(areaPanel));
 searchBtn.addEventListener('click', () => toggle(searchPanel));
 metricBtn.addEventListener('click', () => toggle(metricPanel));
+salesPeriodBtn.addEventListener('click', () => toggle(salesPeriodPanel));
 searchDimBtn.addEventListener('click', () => toggle(dimensionPanel));
 searchSubmit.addEventListener('click', () => {
   state.query = searchInput.value.trim();
@@ -193,7 +202,11 @@ $$('.store-panel button').forEach((button) => {
 $$('.sheet button').forEach((button) => {
   button.addEventListener('click', () => {
     if (button.dataset.dim) setDimension(button.dataset.dim);
-    if (!button.classList.contains('cancel') && !button.dataset.dim) {
+    if (button.dataset.salesPeriod) {
+      salesModeLabel.textContent = button.dataset.salesPeriod;
+      salesPeriodBtn.classList.add('active');
+    }
+    if (!button.classList.contains('cancel') && !button.dataset.dim && !button.dataset.salesPeriod) {
       const label = button.textContent.trim();
       metricBtn.innerHTML = `${label} <span>▼</span>`;
       trafficMetricLabel.textContent = label;
@@ -213,12 +226,14 @@ $$('.tabs button').forEach((button) => {
   button.addEventListener('click', () => setDimension(button.dataset.dim));
 });
 
-$$('.area-filter button').forEach((button) => {
+$$('.area-panel button').forEach((button) => {
   button.addEventListener('click', () => {
-    $$('.area-filter button').forEach((item) => item.classList.remove('active'));
+    $$('.area-panel button').forEach((item) => item.classList.remove('active'));
     button.classList.add('active');
     state.area = button.dataset.area;
+    if (state.store.includes('[7222]')) setDimension('柜组');
     renderTable();
+    hidePanels();
   });
 });
 
