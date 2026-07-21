@@ -9,12 +9,52 @@
 <body>
   <main class="app-shell" aria-label="客流看板原型">
     <section class="phone-frame" aria-label="手机容器">
-      <div class="phone-notch" aria-hidden="true">
-        <span class="camera"></span>
-        <span class="speaker"></span>
+      <div class="phone-notch" aria-hidden="true"><span class="camera"></span><span class="speaker"></span></div>
+      <div class="phone-screen">
+        <header class="topbar"><button class="back" type="button">‹</button><h1>经营分析</h1><button class="capsule" type="button"><span>•••</span><i></i></button></header>
+        <nav class="filters">
+          <button id="dateBtn" class="filter active" type="button">昨日 <span>▼</span></button>
+          <button id="storeBtn" class="filter" type="button">所有门店 <span>▼</span></button>
+          <button class="search" type="button"><i></i>搜索</button>
+          <b></b><button class="tool" type="button">⚙</button><button class="tool" type="button">↻</button><button class="info" type="button">i</button>
+        </nav>
+        <div class="content">
+          <section class="kpi-list">
+            <article><h2>本年累计销售额</h2><strong>23,561,765,443.34</strong><p><span class="red">同比： 22.74%</span></p></article>
+            <article><h2>本月累计销售额</h2><strong>1,146,230,915.03</strong><p><span class="red">同比： 5.57%</span><span class="green">环比： -19.12%</span></p></article>
+            <article><h2>销售额</h2><strong>68,483,264.11</strong><p><span class="red">同比： 0.06%</span><span class="green">环比： -10.99%</span></p></article>
+          </section>
+          <section class="trend sales-trend">
+            <div class="trend-head"><h2>销售趋势</h2><div class="seg"><button class="active" type="button">按月</button><button type="button">按年</button></div><button class="month" type="button">本月 <span>▼</span></button></div>
+            <div class="legend"><span class="line blue"></span>本期 <span class="line gray"></span>同期</div>
+            <svg class="chart" viewBox="0 0 760 390" aria-label="销售趋势图">
+              <defs><linearGradient id="blueFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#556ddd" stop-opacity=".25"/><stop offset="1" stop-color="#556ddd" stop-opacity=".04"/></linearGradient></defs>
+              <g class="axis"><line x1="104" y1="314" x2="710" y2="314"/><line x1="104" y1="45" x2="104" y2="314"/><text x="24" y="318">0</text><text x="0" y="252">500,000</text><text x="0" y="188">1,000,000</text><text x="0" y="124">1,500,000</text><text x="0" y="62">2,500,000</text><text x="82" y="360">2026.07.01</text><text x="350" y="360">2026.07.10</text><text x="618" y="360">2026.07.19</text></g>
+              <path class="area" d="M106 228 C126 174 152 178 184 178 C226 178 232 166 258 166 C292 166 292 208 324 208 C352 208 346 162 376 162 C402 162 396 176 426 176 C464 176 470 162 504 164 C554 167 558 198 592 194 C620 190 614 116 644 112 C672 108 662 178 710 168 L710 314 L106 314 Z"/>
+              <path class="gray-path" d="M106 184 C126 144 152 146 184 146 C226 146 232 128 258 128 C292 128 292 164 324 164 C352 164 346 128 376 122 C402 116 396 138 426 134 C464 130 470 130 504 140 C554 154 558 188 592 172 C620 156 614 72 644 68 C672 64 662 120 710 110"/>
+              <path class="blue-path" d="M106 228 C126 174 152 178 184 178 C226 178 232 166 258 166 C292 166 292 208 324 208 C352 208 346 162 376 162 C402 162 396 176 426 176 C464 176 470 162 504 164 C554 167 558 198 592 194 C620 190 614 116 644 112 C672 108 662 178 710 168"/>
+            </svg>
+          </section>
+          <section class="metric-grid">
+            <article><h2>线上访问人次(PV)</h2><strong>130,386,534</strong><p><span>同比： -9.31%</span><span>环比： -48.76%</span></p></article>
+            <article><h2>线上访问人数(UV)</h2><strong>10,160,447</strong><p><span>同比： -6.62%</span><span>环比： -41.45%</span></p></article>
+            <article><h2>顾客人数</h2><strong>116,993</strong><p><span>同比： -25.16%</span><span>环比： -57.27%</span></p></article>
+            <article><h2>转化率</h2><strong>1.14%</strong><p><span>同比： -0.3%</span><span>环比： -0.41%</span></p></article>
+            <article><h2>客单价</h2><strong>1,036.71</strong><p><span>同比： -22.64%</span><span>环比： -16.49%</span></p></article>
+          </section>
+          <section class="trend traffic-trend">
+            <div class="traffic-head"><h2>客流指标趋势</h2><button id="metricBtn" type="button">顾客人数 <span>▼</span></button></div>
+            <div class="legend"><span class="line blue"></span>本期 <span class="line gray"></span>同期</div>
+            <svg class="chart small" viewBox="0 0 760 330" aria-label="客流指标趋势图"><g class="axis"><line x1="106" y1="280" x2="710" y2="280"/><line x1="106" y1="42" x2="106" y2="280"/><text x="42" y="282">1,000</text><text x="42" y="188">2,000</text><text x="42" y="90">3,000</text></g><path class="gray-path" d="M106 132 C122 196 132 96 146 128 C162 174 170 76 184 116 C206 62 220 244 242 186 C276 130 300 184 326 146 C358 96 372 226 402 138 C430 104 444 198 468 138 C496 100 506 196 532 136 C560 102 570 184 604 140 C632 170 646 112 674 132 C694 92 704 130 710 122"/><path class="blue-path" d="M106 160 C120 270 130 112 146 152 C164 130 174 108 190 126 C204 52 224 236 246 228 C274 214 300 206 328 214 C358 178 372 230 404 222 C432 210 444 246 472 216 C502 184 508 242 536 214 C560 206 572 256 604 216 C632 228 646 206 674 198 C694 170 704 152 710 178"/></svg>
+          </section>
+          <section class="detail"><h2>明细数据</h2><div class="tabs"><button>柜组</button><button class="active">品牌</button><button>品类</button><button>商品</button></div><div class="table-wrap"><table><thead><tr><th>序号</th><th>品牌</th><th>销售额</th><th>顾客人数</th><th>客单价</th><th>毛利率</th><th>连带率</th></tr></thead><tbody><tr><td>1</td><td>[030017]Lancome 兰蔻</td><td>16,489,332.9</td><td>16,641</td><td>990.89</td><td>1.16%</td><td>1.33</td></tr><tr><td>2</td><td>[030113]La Mer 海蓝之谜</td><td>9,025,709.75</td><td>5,632</td><td>1,602.58</td><td>9.28%</td><td>1.36</td></tr><tr><td>3</td><td>[030108]HR/赫莲娜</td><td>8,883,833.66</td><td>4,333</td><td>2,050.27</td><td>10.63%</td><td>1.39</td></tr><tr><td>4</td><td>[030025]Estee Lauder 雅诗兰黛</td><td>8,404,883.92</td><td>9,690</td><td>867.38</td><td>8.99%</td><td>1.37</td></tr><tr><td>5</td><td>[030037]YSL 圣罗兰</td><td>8,216,332.96</td><td>15,963</td><td>514.71</td><td>20.65%</td><td>1.45</td></tr><tr><td>6</td><td>[030031]Chanel香奈儿</td><td>6,944,290</td><td>9,469</td><td>733.37</td><td>44.48%</td><td>1.28</td></tr><tr><td>7</td><td>[030224]Skin Ceuticals 修丽可</td><td>4,398,207.14</td><td>3,971</td><td>1,107.58</td><td>2.32%</td><td>1.61</td></tr><tr><td>8</td><td>[030052]Clarins 娇韵诗</td><td>3,678,841.85</td><td>5,936</td><td>619.75</td><td>27.09%</td><td>1.44</td></tr></tbody></table></div></section>
+        </div>
+        <div id="datePanel" class="overlay hidden"><div class="date-panel"><div class="date-options"><button class="selected">昨日</button><button>上月</button><button>本月</button><button>本季</button><button>去年</button><button>今年</button><button>近7天</button><button>近1个月</button><button>近3个月</button><button>近1年</button></div><h3>自定义</h3><div class="range"><span>▣</span><b>开始日期</b><em>-</em><b>结束日期</b></div><p>最长只能选近十五个月进行查询（不含今日）</p><footer><button>重置</button><button class="confirm">确定</button></footer></div></div>
+        <div id="storePanel" class="overlay hidden"><div class="store-panel"><button class="active">所有门店</button><button>[6868]海棠湾店</button><button>[7048]新海港店</button><button>[6922]日月广场店</button><button>[6921]博鳌市内店</button><button>[7016]凤凰机场店</button><button>[6132]美兰机场店</button><button>[7018]海南电商离岛免税</button><button>[7017]海南电商会员优选</button></div></div>
+        <div id="metricPanel" class="sheet hidden"><div><button>顾客人数</button><button>转化率</button><button>客单价</button><button>PV</button><button>UV</button><button class="cancel">取消</button></div></div>
       </div>
-      <div class="phone-screen" aria-label="后续内容画布"></div>
     </section>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
