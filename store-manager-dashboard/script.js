@@ -13,6 +13,7 @@ const areaPanel = $('#areaPanel');
 const searchPanel = $('#searchPanel');
 const metricPanel = $('#metricPanel');
 const salesPeriodPanel = $('#salesPeriodPanel');
+const salesPeriodOptions = $('#salesPeriodOptions');
 const dimensionPanel = $('#dimensionPanel');
 const periodLabel = $('#periodLabel');
 const salesModeLabel = $('#salesModeLabel');
@@ -35,6 +36,8 @@ const state = {
   dimension: '品牌',
   area: '全部',
   query: '',
+  salesGranularity: '按月',
+  salesPeriod: '本月',
 };
 
 const inboundGroups = [
@@ -111,6 +114,21 @@ function rowsForDimension() {
   return rows.filter((row) => row.join('').toLowerCase().includes(state.query.toLowerCase()));
 }
 
+function renderSalesPeriodOptions() {
+  const options = state.salesGranularity === '按年' ? ['今年', '去年'] : ['本月', '1月', '2月', '3月', '4月', '5月', '6月'];
+  salesPeriodOptions.innerHTML = `${options.map((item) => `<button data-sales-period="${item}">${item}</button>`).join('')}<button class="cancel">取消</button>`;
+  salesPeriodOptions.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (button.dataset.salesPeriod) {
+        state.salesPeriod = button.dataset.salesPeriod;
+        salesModeLabel.textContent = state.salesPeriod;
+        salesPeriodBtn.classList.add('active');
+      }
+      hidePanels();
+    });
+  });
+}
+
 function renderTable() {
   areaBtn.classList.toggle('active', state.area !== '全部');
   areaBtn.innerHTML = `${state.area === '全部' ? '区域类型' : state.area} <span>▼</span>`;
@@ -145,7 +163,9 @@ function setDateLabel(label) {
 
 function setStoreLabel(label) {
   state.store = label;
-  const shortLabel = label.length > 13 ? `${label.slice(0, 13)}…` : label;
+  let shortLabel = label;
+  if (label.includes('[7222]')) shortLabel = '[7222]中免...';
+  else if (label.length > 6) shortLabel = `${label.slice(0, 6)}...`;
   storeBtn.innerHTML = `${shortLabel} <span>▼</span>`;
   storeBtn.title = label;
   storeBtn.classList.toggle('active', label !== '所有门店');
@@ -161,6 +181,7 @@ function setDimension(dimension) {
 }
 
 setDateLabel('今日');
+renderSalesPeriodOptions();
 renderTable();
 
 const dateButtons = $$('.date-options button');
@@ -202,10 +223,6 @@ $$('.store-panel button').forEach((button) => {
 $$('.sheet button').forEach((button) => {
   button.addEventListener('click', () => {
     if (button.dataset.dim) setDimension(button.dataset.dim);
-    if (button.dataset.salesPeriod) {
-      salesModeLabel.textContent = button.dataset.salesPeriod;
-      salesPeriodBtn.classList.add('active');
-    }
     if (!button.classList.contains('cancel') && !button.dataset.dim && !button.dataset.salesPeriod) {
       const label = button.textContent.trim();
       metricBtn.innerHTML = `${label} <span>▼</span>`;
@@ -219,6 +236,11 @@ $$('.seg button').forEach((button) => {
   button.addEventListener('click', () => {
     $$('.seg button').forEach((item) => item.classList.remove('active'));
     button.classList.add('active');
+    state.salesGranularity = button.dataset.granularity || button.textContent.trim();
+    state.salesPeriod = state.salesGranularity === '按年' ? '' : '本月';
+    salesPeriodBtn.classList.toggle('hidden', state.salesGranularity === '按年');
+    salesModeLabel.textContent = state.salesPeriod || '';
+    renderSalesPeriodOptions();
   });
 });
 
