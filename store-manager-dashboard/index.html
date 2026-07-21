@@ -15,8 +15,8 @@
         <nav class="filters">
           <button id="dateBtn" class="filter active" type="button">今日 <span>▼</span></button>
           <button id="storeBtn" class="filter" type="button">所有门店 <span>▼</span></button>
-          <button id="searchBtn" class="search" type="button"><i></i>搜索</button>
-          <b></b><button class="tool" type="button">⚙</button><button class="tool" type="button">↻</button><button class="info" type="button">i</button>
+          <button id="areaBtn" class="filter" type="button">区域类型 <span>▼</span></button>
+          <b></b><button id="searchBtn" class="search icon-only" type="button" aria-label="搜索"><i></i></button><button class="tool" type="button">⚙</button><button class="tool" type="button">↻</button><button class="info" type="button">i</button>
         </nav>
         <div class="content">
           <section class="kpi-list">
@@ -25,7 +25,7 @@
             <article><h2>销售额</h2><strong>68,483,264.11</strong><p><span class="red">同比： 0.06%</span><span class="green">环比： -10.99%</span></p></article>
           </section>
           <section class="trend sales-trend">
-            <div class="trend-head"><h2>销售趋势</h2><div class="seg"><button class="active" type="button">按月</button><button type="button">按年</button></div><button class="month" type="button"><span id="salesModeLabel">本月</span> <span>▼</span></button></div>
+            <div class="trend-head"><h2>销售趋势</h2><div class="seg" id="salesGranularity"><button class="active" data-granularity="按月" type="button">按月</button><button data-granularity="按年" type="button">按年</button></div><button class="month" id="salesPeriodBtn" type="button"><span id="salesModeLabel">本月</span> <span>▼</span></button></div>
             <div class="legend"><span class="line blue"></span>本期 <span class="line gray"></span>同期</div>
             <svg class="chart" viewBox="0 0 760 390" aria-label="销售趋势图">
               <defs><linearGradient id="blueFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#556ddd" stop-opacity=".25"/><stop offset="1" stop-color="#556ddd" stop-opacity=".04"/></linearGradient></defs>
@@ -47,12 +47,14 @@
             <div class="legend"><span class="line blue"></span>本期 <span class="line gray"></span>同期</div>
             <div class="traffic-chart-box"><svg id="trafficChart" class="chart small" viewBox="0 0 760 330" aria-label="客流指标趋势图"><g class="axis"><line x1="106" y1="280" x2="710" y2="280"/><line x1="106" y1="42" x2="106" y2="280"/><text x="42" y="282">1,000</text><text x="42" y="188">2,000</text><text x="42" y="90">3,000</text></g><path class="gray-path" d="M106 132 C122 196 132 96 146 128 C162 174 170 76 184 116 C206 62 220 244 242 186 C276 130 300 184 326 146 C358 96 372 226 402 138 C430 104 444 198 468 138 C496 100 506 196 532 136 C560 102 570 184 604 140 C632 170 646 112 674 132 C694 92 704 130 710 122"/><path class="blue-path" d="M106 160 C120 270 130 112 146 152 C164 130 174 108 190 126 C204 52 224 236 246 228 C274 214 300 206 328 214 C358 178 372 230 404 222 C432 210 444 246 472 216 C502 184 508 242 536 214 C560 206 572 256 604 216 C632 228 646 206 674 198 C694 170 704 152 710 178"/></svg><div id="chartTooltip" class="chart-tooltip"><div>2026-07-16</div><div><span class="dot blue-dot"></span>本期 <b>26,322</b></div><div><span class="dot gray-dot"></span>同期 <b>20,628</b></div></div></div>
           </section>
-          <section class="detail"><h2>明细数据</h2><div id="areaFilter" class="area-filter hidden"><span>区域类型</span><button data-area="全部" class="active">全部</button><button data-area="入境">入境</button><button data-area="出境">出境</button></div><div class="tabs"><button data-dim="柜组">柜组</button><button data-dim="品牌" class="active">品牌</button><button data-dim="品类">品类</button><button data-dim="商品">商品</button></div><div class="table-wrap"><table id="detailTable"></table></div></section>
+          <section class="detail"><h2>明细数据</h2><div class="tabs"><button data-dim="柜组">柜组</button><button data-dim="品牌" class="active">品牌</button><button data-dim="品类">品类</button><button data-dim="商品">商品</button></div><div class="table-wrap"><table id="detailTable"></table></div></section>
         </div>
         <div id="datePanel" class="overlay hidden"><div class="date-panel"><div class="date-options"><button class="selected" data-value="今日">今日</button><button data-value="昨日">昨日</button><button data-value="上月">上月</button><button data-value="本月">本月</button><button data-value="本季">本季</button><button data-value="去年">去年</button><button data-value="今年">今年</button><button data-value="近7天">近7天</button><button data-value="近1个月">近1个月</button><button data-value="近3个月">近3个月</button><button data-value="近1年">近1年</button></div><h3>自定义</h3><div class="range"><span>▣</span><b>开始日期</b><em>-</em><b>结束日期</b></div><p>最长只能选近十五个月进行查询（不含今日）</p><footer><button>重置</button><button class="confirm">确定</button></footer></div></div>
         <div id="storePanel" class="overlay hidden"><div class="store-panel"><button class="active">所有门店</button><button>[6868]海棠湾店</button><button>[7048]新海港店</button><button>[6922]日月广场店</button><button>[6921]博鳌市内店</button><button>[7016]凤凰机场店</button><button>[6132]美兰机场店</button><button>[7018]海南电商离岛免税</button><button>[7017]海南电商会员优选</button><button>[7222]中免集团(北京)免税品有限公司</button></div></div>
+        <div id="areaPanel" class="overlay hidden"><div class="area-panel"><button data-area="全部" class="active">全部</button><button data-area="入境">入境</button><button data-area="出境">出境</button></div></div>
         <div id="searchPanel" class="overlay hidden"><div class="search-panel"><div class="search-row"><button id="searchDimBtn" type="button">柜组 <span>▼</span></button><label><input id="searchInput" type="search" placeholder="搜索"><button id="searchSubmit" type="button">⌕</button></label></div></div></div>
         <div id="metricPanel" class="sheet hidden"><div><button>顾客人数</button><button>转化率</button><button>客单价</button><button>PV</button><button>UV</button><button class="cancel">取消</button></div></div>
+        <div id="salesPeriodPanel" class="sheet hidden"><div><button data-sales-period="本月">本月</button><button data-sales-period="上月">上月</button><button data-sales-period="本季">本季</button><button data-sales-period="今年">今年</button><button data-sales-period="去年">去年</button><button class="cancel">取消</button></div></div>
         <div id="dimensionPanel" class="sheet hidden"><div><button data-dim="柜组">柜组</button><button data-dim="品牌">品牌</button><button data-dim="品类">品类</button><button data-dim="商品">商品</button><button class="cancel">取消</button></div></div>
       </div>
     </section>
