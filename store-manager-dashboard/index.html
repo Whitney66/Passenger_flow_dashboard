@@ -3,122 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>店长看板高保真原型</title>
+  <title>客流看板原型</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="prototype-shell" aria-label="店长看板原型">
-    <section class="note note-left note-1" data-note="1">
-      <header><strong>1</strong><button type="button">点击收起</button></header>
-      <div class="note-body">
-        <h2>昨日/今日维度说明</h2>
-        <p class="highlight">当前规则：左侧展示团队目标达成以及日目标；右侧展示月目标。</p>
-        <ul>
-          <li>统计周期随顶部时间维度切换。</li>
-          <li>昨日/今日统计所选日期截至当前时间的成交金额。</li>
-          <li>仅展示当月剩余目标卡片，剩余每日目标卡片不展示。</li>
-        </ul>
+  <main class="app-shell" aria-label="客流看板原型">
+    <section class="phone-frame" aria-label="手机容器">
+      <div class="phone-notch" aria-hidden="true">
+        <span class="camera"></span>
+        <span class="speaker"></span>
       </div>
-    </section>
-
-    <section class="phone" aria-label="手机端店长看板">
-      <div class="device-top"><span class="camera"></span><span class="speaker"></span></div>
-      <div class="screen">
-        <header class="status-bar"><span>12:00</span><span class="status-icons">▮▮▮⌁▭</span></header>
-        <nav class="app-title"><button class="back" type="button" aria-label="返回">‹</button><h1>店长看板</h1></nav>
-        <section class="profile">
-          <div class="avatar" aria-hidden="true"><span></span></div>
-          <div class="person"><strong>小毛</strong><span>122353</span></div>
-          <div class="team-toggle" role="tablist" aria-label="团队切换">
-            <button type="button" class="active" data-team="团队">团队</button>
-            <button type="button" data-team="主营柜组">主营柜组</button>
-          </div>
-        </section>
-        <section class="period-tabs" role="tablist" aria-label="时间维度">
-          <button type="button" data-period="昨日">昨日</button>
-          <button type="button" class="active" data-period="今日">今日</button>
-          <button type="button" data-period="本月">本月</button>
-          <button type="button" data-period="本年">本年</button>
-        </section>
-        <section class="dashboard">
-          <p class="period-copy">统计周期： <span id="periodText">2022-10-30 0:00:00~23:59:59</span></p>
-          <div class="section-head">
-            <h2>销售业绩</h2>
-            <div class="value-toggle" role="tablist" aria-label="免值品切换">
-              <button type="button" class="active">含免值品</button>
-              <button type="button">不含免值品</button>
-            </div>
-          </div>
-          <div class="metric-cards">
-            <article>
-              <h3>团队成交金额</h3>
-              <p><strong id="salesValue">5,000</strong> 元</p>
-              <div class="trend"><span>环比 ↑ 50%</span><span>同比 ↑ 30%</span></div>
-            </article>
-            <article>
-              <h3>团队目标达成</h3>
-              <p><strong id="targetValue">50%</strong></p>
-              <small>剩余 <span id="remainValue">5,000</span>元</small>
-            </article>
-          </div>
-          <div class="goal-row"><span>团队目标达成（日目标： 10,000元）</span><span>月目标： 1,500,000元</span></div>
-          <div class="progress" aria-label="团队目标达成 50%"><span id="progressBar">50%</span></div>
-          <article class="remaining-card"><strong id="monthRemain">253</strong> 元<span>当月剩余目标</span></article>
-          <section class="rank-grid" aria-label="指标口径">
-            <button><strong>253</strong><span>销售数量</span></button>
-            <button><strong>100</strong><span>购物人数</span></button>
-            <button><strong>860</strong><span>进店客流</span></button>
-            <button><strong>11.6%</strong><span>转化率</span></button>
-            <button><strong>2.5</strong><span>连带率</span></button>
-            <button><strong>253</strong><span>件单价</span></button>
-            <button><strong>253</strong><span>客单价</span></button>
-            <button class="linkish"><strong>253</strong><span>退货金额 ›</span></button>
-            <button class="linkish"><strong>253</strong><span>退货件数 ›</span></button>
-          </section>
-        </section>
-      </div>
-    </section>
-
-    <section class="note note-right note-2" data-note="2">
-      <header><strong>2</strong><button type="button">点击收起</button></header>
-      <div class="note-body">
-        <h2>昨日/今日销售业绩</h2>
-        <h3>数据定义与计算规则</h3>
-        <ul>
-          <li>含免值品/不含免值品：依据商品大类【26】免值品进行区分。</li>
-          <li>成交金额：小票表成交金额，剔除退货。对比变化率使用红色表示增加、绿色表示减少。</li>
-          <li>环比 =（当日成交金额 / 昨天成交金额）* 100%。</li>
-          <li>同比 =（当日成交金额 / 去年同期成交金额）* 100%。</li>
-          <li>无法对比时，环比/同比展示100%。</li>
-          <li>团队目标达成：通过进度条百分比表示，四舍五入取整；团队成交金额 / 目标销售额（元）。</li>
-          <li>月目标：昨日/今日取自《员工销售目标维护》的【目标销售额（元）】；本月取团队员工【目标销售额（元）】汇总值。</li>
-          <li>日目标 = 月目标 / 月自然天数。</li>
-          <li>当月剩余目标 = 月目标 - 截止月已完成成交金额。</li>
-          <li>剩余每日目标 =（月目标 - 截止月已完成成交金额）/ 当月剩余天数。</li>
-        </ul>
-        <h3>指标口径</h3>
-        <ul>
-          <li>销售数量：商品数量，剔除退货。</li>
-          <li>购物人数：按证件号 &gt; 手机号 &gt; 小票号优先级取唯一值。</li>
-          <li>成交单数：不做去重，直接取小票数。</li>
-          <li>进店客流：北京机场门店（首都机场+大兴机场）通过接口获取。</li>
-          <li>转化率 = 购物人数 / 进店客流。</li>
-          <li>连带率 =（销售商品数量 - 退货商品数量）/ 成交单数。</li>
-          <li>客单价 = 成交金额 / 购物人数。</li>
-          <li>退货金额、退货件数：取自退货订单，支持查看退货明细；其他值不支持。</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="note note-left note-3" data-note="3">
-      <header><strong>3</strong><button type="button">点击收起</button></header>
-      <div class="note-body">
-        <h2>销售排名</h2>
-        <p class="highlight">昨日/今日维度不展示销售排名列表。</p>
-        <ul><li>排名字段与排序口径以本月维度说明为准。</li></ul>
-      </div>
+      <div class="phone-screen" aria-label="后续内容画布"></div>
     </section>
   </main>
-  <script src="script.js"></script>
 </body>
 </html>
