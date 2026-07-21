@@ -181,6 +181,8 @@ function setDimension(dimension) {
 }
 
 setDateLabel('今日');
+salesPeriodBtn.hidden = false;
+salesPeriodBtn.style.display = '';
 renderSalesPeriodOptions();
 renderTable();
 
@@ -237,9 +239,12 @@ $$('.seg button').forEach((button) => {
     $$('.seg button').forEach((item) => item.classList.remove('active'));
     button.classList.add('active');
     state.salesGranularity = button.dataset.granularity || button.textContent.trim();
-    state.salesPeriod = state.salesGranularity === '按年' ? '' : '本月';
-    salesPeriodBtn.classList.toggle('hidden', state.salesGranularity === '按年');
-    salesModeLabel.textContent = state.salesPeriod || '';
+    const yearly = state.salesGranularity === '按年';
+    state.salesPeriod = yearly ? '' : '本月';
+    salesPeriodBtn.hidden = yearly;
+    salesPeriodBtn.classList.toggle('hidden', yearly);
+    salesPeriodBtn.style.display = yearly ? 'none' : '';
+    salesModeLabel.textContent = state.salesPeriod;
     renderSalesPeriodOptions();
   });
 });
