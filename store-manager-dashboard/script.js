@@ -31,7 +31,7 @@ const fmt = (date) => `${date.getFullYear()}.${pad(date.getMonth() + 1)}.${pad(d
 const defaultDay = fmt(now);
 
 const state = {
-  date: '今日',
+  date: '昨日',
   store: '所有门店',
   dimension: '品牌',
   area: '全部',
@@ -157,7 +157,7 @@ function setDateLabel(label) {
   state.date = label;
   dateBtn.innerHTML = `${label} <span>▼</span>`;
   dateBtn.classList.add('active');
-  periodLabel.textContent = label === '今日' ? defaultDay : label;
+  periodLabel.textContent = label;
   salesModeLabel.textContent = label.includes('年') ? '本年' : label.includes('月') ? '本月' : '本月';
 }
 
@@ -180,7 +180,7 @@ function setDimension(dimension) {
   renderTable();
 }
 
-setDateLabel('今日');
+setDateLabel('昨日');
 salesPeriodBtn.hidden = false;
 salesPeriodBtn.style.display = '';
 renderSalesPeriodOptions();
