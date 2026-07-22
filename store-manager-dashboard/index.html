@@ -48,6 +48,14 @@
           </section>
           <section class="detail"><h2>明细数据</h2><div class="tabs"><button data-dim="柜组">柜组</button><button data-dim="品牌" class="active">品牌</button><button data-dim="品类">品类</button><button data-dim="商品">商品</button></div><div class="table-wrap"><table id="detailTable"></table></div></section>
         </div>
+
+        <div class="phone-pins" aria-hidden="true">
+          <span class="pin pin-1">1</span>
+          <span class="pin pin-2">2</span>
+          <span class="pin pin-3">3</span>
+          <span class="pin pin-4">4</span>
+          <span class="pin pin-5">5</span>
+        </div>
         <div id="datePanel" class="overlay hidden"><div class="date-panel"><div class="date-options"><button class="selected" data-value="昨日">昨日</button><button data-value="上月">上月</button><button data-value="本月">本月</button><button data-value="本季">本季</button><button data-value="去年">去年</button><button data-value="今年">今年</button><button data-value="近7天">近7天</button><button data-value="近1个月">近1个月</button><button data-value="近3个月">近3个月</button><button data-value="近1年">近1年</button></div><h3>自定义</h3><div class="range"><span>▣</span><b>开始日期</b><em>-</em><b>结束日期</b></div><p>最长只能选近十五个月进行查询（不含今日）</p><footer><button>重置</button><button class="confirm">确定</button></footer></div></div>
         <div id="storePanel" class="overlay hidden"><div class="store-panel"><button class="active">所有门店</button><button>[6868]海棠湾店</button><button>[7048]新海港店</button><button>[6922]日月广场店</button><button>[6921]博鳌市内店</button><button>[7016]凤凰机场店</button><button>[6132]美兰机场店</button><button>[7018]海南电商离岛免税</button><button>[7017]海南电商会员优选</button><button>[7222]中免集团(北京)免税品有限公司</button></div></div>
         <div id="areaPanel" class="overlay hidden"><div class="area-panel"><button data-area="全部" class="active">全部</button><button data-area="入境">入境</button><button data-area="出境">出境</button></div></div>
@@ -59,6 +67,13 @@
     </section>
   
     <aside class="notes-board" aria-label="指标说明">
+      <svg class="annotation-lines" viewBox="0 0 1240 1280" aria-hidden="true">
+        <polyline points="330,160 382,160 435,214" />
+        <polyline points="910,210 862,210 815,388" />
+        <polyline points="330,535 382,535 435,652" />
+        <polyline points="910,500 862,500 815,826" />
+        <polyline points="910,730 842,730 757,1088" />
+      </svg>
       <article class="note-card left note-1" data-target-y="230"><div class="note-head"><span>1</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>销售指标说明</h3><p><strong>本年累计销售额：</strong>本年截止到昨日的累计销售额</p><p><strong>本月累计销售额：</strong>本月截止到昨日的累计销售额</p><p><strong>销售额：</strong>所有小票成交金额的总和（扣减退货）。</p><p>-- 环比：（所选时间的销售额-上月同期的销售额）/上月同期的销售额*100%</p><p>-- 同比：（所选时间的销售额-去年同期的销售额）/去年同期的销售额*100%</p><p>-- 展示要求：红色表示下降，绿色表示上升。“年”维度只有同比，没有环比，无法对比则展示为100%</p><p><strong>区域类型：</strong>根据柜组加以区分，入境为：[72225101]T3CI1、[72225102]T3CI2、[72225103]T3CI3、[72225104]T3C14，其余均为出境</p></div></article>
       <article class="note-card right note-2" data-target-y="500"><div class="note-head"><span>2</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>销售趋势</h3><p><strong>本期：</strong>在当前筛选的时间维度下，该时间段内的销售总额。</p><p><strong>同期：</strong>在去年相同的时间段下的销售总额。</p><p><strong>横坐标：</strong>时间</p><p><strong>纵坐标：</strong>销售额</p></div></article>
       <article class="note-card left note-3" data-target-y="780"><div class="note-head"><span>3</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>客流指标说明</h3><p><strong>顾客人数：</strong>需要去重，仅按相同优先级证件号&gt;手机号&gt;小票号计数，按日去重。</p><p><strong>进店人数：</strong>通过接口获取客流数据；</p><p><strong>转化率：</strong>顾客人数/进店人数；</p><p><strong>客单价：</strong>销售额/顾客人数；</p></div></article>
