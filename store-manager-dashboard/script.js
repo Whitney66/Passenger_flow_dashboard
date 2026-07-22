@@ -285,3 +285,12 @@ $$('.overlay').forEach((overlay) => {
     if (event.target === overlay) hidePanels();
   });
 });
+
+
+$$('.note-toggle').forEach((button) => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.note-card');
+    const collapsed = card.classList.toggle('collapsed');
+    button.textContent = collapsed ? '点击展开' : '点击收起';
+  });
+});
