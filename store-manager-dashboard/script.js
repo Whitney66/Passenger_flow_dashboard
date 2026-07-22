@@ -294,3 +294,35 @@ document.addEventListener('click', (event) => {
   const collapsed = card.classList.toggle('collapsed');
   button.textContent = collapsed ? '点击展开' : '点击收起';
 });
+
+function updateAnnotationLines() {
+  const board = document.querySelector('.notes-board');
+  const svg = document.querySelector('.annotation-lines');
+  if (!board || !svg) return;
+  const boardRect = board.getBoundingClientRect();
+  const scaleX = 1240 / boardRect.width;
+  const scaleY = 1280 / boardRect.height;
+  const toPoint = (rect, side = 'center') => {
+    const x = side === 'left' ? rect.left : side === 'right' ? rect.right : rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    return [Math.round((x - boardRect.left) * scaleX), Math.round((y - boardRect.top) * scaleY)];
+  };
+  const lines = [1, 2, 3, 4, 5].map((id) => {
+    const card = document.querySelector('.note-' + id);
+    const pin = document.querySelector('.pin-' + id);
+    if (!card || !pin) return '';
+    const cardRect = card.getBoundingClientRect();
+    const pinRect = pin.getBoundingClientRect();
+    const cardSide = card.classList.contains('left') ? 'right' : 'left';
+    const p1 = toPoint(cardRect, cardSide);
+    const p3 = toPoint(pinRect, 'center');
+    const bend = card.classList.contains('left') ? Math.min(p3[0] - 28, p1[0] + 72) : Math.max(p3[0] + 28, p1[0] - 72);
+    return '<polyline points="' + p1[0] + ',' + p1[1] + ' ' + bend + ',' + p1[1] + ' ' + p3[0] + ',' + p3[1] + '" />';
+  }).join('');
+  svg.setAttribute('viewBox', '0 0 1240 1280');
+  svg.innerHTML = lines;
+}
+
+['resize', 'load'].forEach((eventName) => window.addEventListener(eventName, updateAnnotationLines));
+document.querySelector('.phone-screen')?.addEventListener('scroll', updateAnnotationLines, { passive: true });
+updateAnnotationLines();
