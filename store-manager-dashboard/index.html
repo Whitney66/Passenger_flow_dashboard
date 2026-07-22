@@ -24,18 +24,6 @@
             <article><h2>本月累计销售额</h2><strong>1,146,230,915.03</strong><p><span class="red">同比： 5.57%</span><span class="green">环比： -19.12%</span></p></article>
             <article><h2>销售额</h2><strong>68,483,264.11</strong><p><span class="red">同比： 0.06%</span><span class="green">环比： -10.99%</span></p></article>
           </section>
-          <aside class="note-card">
-            <div class="note-head"><span>1</span><b>点击收起</b></div>
-            <div class="note-body">
-              <h3>销售指标说明</h3>
-              <p><strong>本年累计销售额：</strong>本年截止到昨日的累计销售额</p>
-              <p><strong>本月累计销售额：</strong>本月截止到昨日的累计销售额</p>
-              <p><strong>销售额：</strong>所有小票成交金额的总和（扣减退货）。</p>
-              <p>-- 环比：（所选时间的销售额-上月同期的销售额）/上月同期的销售额*100%</p>
-              <p>-- 同比：（所选时间的销售额-去年同期的销售额）/去年同期的销售额*100%</p>
-              <p>-- 展示要求：红色表示下降，绿色表示上升。“年”维度只有同比，没有环比，无法对比则展示为100%</p>
-            </div>
-          </aside>
           <section class="trend sales-trend">
             <div class="trend-head"><h2>销售趋势</h2><div class="seg" id="salesGranularity"><button class="active" data-granularity="按月" type="button">按月</button><button data-granularity="按年" type="button">按年</button></div><button class="month" id="salesPeriodBtn" type="button"><span id="salesModeLabel">本月</span> <span>▼</span></button></div>
             <div class="legend"><span class="line blue"></span>本期 <span class="line gray"></span>同期</div>
@@ -47,61 +35,18 @@
               <path class="blue-path" d="M106 228 C126 174 152 178 184 178 C226 178 232 166 258 166 C292 166 292 208 324 208 C352 208 346 162 376 162 C402 162 396 176 426 176 C464 176 470 162 504 164 C554 167 558 198 592 194 C620 190 614 116 644 112 C672 108 662 178 710 168"/>
             </svg>
           </section>
-          <aside class="note-card">
-            <div class="note-head"><span>2</span><b>点击收起</b></div>
-            <div class="note-body">
-              <h3>销售趋势</h3>
-              <p><strong>本期：</strong>在当前筛选的时间维度下，该时间段内的销售总额。</p>
-              <p><strong>同期：</strong>在去年相同的时间段下的销售总额。</p>
-              <p><strong>横坐标：</strong>时间</p>
-              <p><strong>纵坐标：</strong>销售额</p>
-            </div>
-          </aside>
           <section class="metric-grid">
             <article><h2>顾客人数</h2><strong>116,993</strong><p><span>同比： -25.16%</span><span>环比： -57.27%</span></p></article>
             <article><h2>进店人数</h2><strong>158,422</strong><p><span>同比： -18.32%</span><span>环比： -43.86%</span></p></article>
             <article><h2>转化率</h2><strong>1.14%</strong><p><span>同比： -0.3%</span><span>环比： -0.41%</span></p></article>
             <article><h2>客单价</h2><strong>1,036.71</strong><p><span>同比： -22.64%</span><span>环比： -16.49%</span></p></article>
           </section>
-          <aside class="note-card">
-            <div class="note-head"><span>3</span><b>点击收起</b></div>
-            <div class="note-body">
-              <h3>客流指标说明</h3>
-              <p><strong>顾客人数：</strong>需要去重，仅按相同优先级证件号&gt;手机号&gt;小票号计数，按日去重。</p>
-              <p><strong>进店人数：</strong>通过接口获取客流数据；</p>
-              <p><strong>转化率：</strong>顾客人数/进店人数；</p>
-              <p><strong>客单价：</strong>销售额/顾客人数；</p>
-            </div>
-          </aside>
           <section class="trend traffic-trend">
             <div class="traffic-head"><h2>客流指标趋势</h2><button id="metricBtn" type="button"><span id="trafficMetricLabel">顾客人数</span> <span>▼</span></button></div>
             <div class="legend"><span class="line blue"></span>本期 <span class="line gray"></span>同期</div>
             <div class="traffic-chart-box"><svg id="trafficChart" class="chart small" viewBox="0 0 760 330" aria-label="客流指标趋势图"><g class="axis"><line x1="106" y1="280" x2="710" y2="280"/><line x1="106" y1="42" x2="106" y2="280"/><text x="42" y="282">1,000</text><text x="42" y="188">2,000</text><text x="42" y="90">3,000</text></g><path class="gray-path" d="M106 132 C122 196 132 96 146 128 C162 174 170 76 184 116 C206 62 220 244 242 186 C276 130 300 184 326 146 C358 96 372 226 402 138 C430 104 444 198 468 138 C496 100 506 196 532 136 C560 102 570 184 604 140 C632 170 646 112 674 132 C694 92 704 130 710 122"/><path class="blue-path" d="M106 160 C120 270 130 112 146 152 C164 130 174 108 190 126 C204 52 224 236 246 228 C274 214 300 206 328 214 C358 178 372 230 404 222 C432 210 444 246 472 216 C502 184 508 242 536 214 C560 206 572 256 604 216 C632 228 646 206 674 198 C694 170 704 152 710 178"/></svg><div id="chartTooltip" class="chart-tooltip"><div>2026-07-16</div><div><span class="dot blue-dot"></span>本期 <b>26,322</b></div><div><span class="dot gray-dot"></span>同期 <b>20,628</b></div></div></div>
           </section>
-          <aside class="note-card">
-            <div class="note-head"><span>4</span><b>点击收起</b></div>
-            <div class="note-body">
-              <h3>客流指标趋势</h3>
-              <p><strong>横坐标：</strong>时间</p>
-              <p><strong>纵坐标：</strong>对应的客流指标，如：进店人数、顾客人数、转化率、客单价</p>
-            </div>
-          </aside>
           <section class="detail"><h2>明细数据</h2><div class="tabs"><button data-dim="柜组">柜组</button><button data-dim="品牌" class="active">品牌</button><button data-dim="品类">品类</button><button data-dim="商品">商品</button></div><div class="table-wrap"><table id="detailTable"></table></div></section>
-          <aside class="note-card">
-            <div class="note-head"><span>5</span><b>点击收起</b></div>
-            <div class="note-body">
-              <h3>明细数据</h3>
-              <p><strong>顾客人数：</strong>需要去重，仅按相同优先级证件号&gt;手机号&gt;小票号计数，按日去重。</p>
-              <p><strong>进店人数：</strong>通过接口获取客流数据；</p>
-              <p><strong>转化率：</strong>顾客人数/进店人数；</p>
-              <p><strong>客单价：</strong>销售额/顾客人数；</p>
-              <p><strong>毛利率：</strong>(营业收入 - 不含税成本 + 供应商折扣)/营业收入</p>
-              <p>营业收入=成交金额-消费税-销售税；</p>
-              <p><strong>连带率：</strong>销售数量（扣减退货）/小票数量（扣减退货)；</p>
-              <p><strong>折扣率：</strong>销售额/售价金额，销售额即成交金额；</p>
-              <p><strong>营收占比：</strong>单品销售额/该单品所属品牌的销售额</p>
-            </div>
-          </aside>
         </div>
         <div id="datePanel" class="overlay hidden"><div class="date-panel"><div class="date-options"><button class="selected" data-value="昨日">昨日</button><button data-value="上月">上月</button><button data-value="本月">本月</button><button data-value="本季">本季</button><button data-value="去年">去年</button><button data-value="今年">今年</button><button data-value="近7天">近7天</button><button data-value="近1个月">近1个月</button><button data-value="近3个月">近3个月</button><button data-value="近1年">近1年</button></div><h3>自定义</h3><div class="range"><span>▣</span><b>开始日期</b><em>-</em><b>结束日期</b></div><p>最长只能选近十五个月进行查询（不含今日）</p><footer><button>重置</button><button class="confirm">确定</button></footer></div></div>
         <div id="storePanel" class="overlay hidden"><div class="store-panel"><button class="active">所有门店</button><button>[6868]海棠湾店</button><button>[7048]新海港店</button><button>[6922]日月广场店</button><button>[6921]博鳌市内店</button><button>[7016]凤凰机场店</button><button>[6132]美兰机场店</button><button>[7018]海南电商离岛免税</button><button>[7017]海南电商会员优选</button><button>[7222]中免集团(北京)免税品有限公司</button></div></div>
@@ -112,6 +57,14 @@
         <div id="dimensionPanel" class="sheet hidden"><div><button data-dim="柜组">柜组</button><button data-dim="品牌">品牌</button><button data-dim="品类">品类</button><button data-dim="商品">商品</button><button class="cancel">取消</button></div></div>
       </div>
     </section>
+  
+    <aside class="notes-board" aria-label="指标说明">
+      <article class="note-card left note-1" data-target-y="230"><div class="note-head"><span>1</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>销售指标说明</h3><p><strong>本年累计销售额：</strong>本年截止到昨日的累计销售额</p><p><strong>本月累计销售额：</strong>本月截止到昨日的累计销售额</p><p><strong>销售额：</strong>所有小票成交金额的总和（扣减退货）。</p><p>-- 环比：（所选时间的销售额-上月同期的销售额）/上月同期的销售额*100%</p><p>-- 同比：（所选时间的销售额-去年同期的销售额）/去年同期的销售额*100%</p><p>-- 展示要求：红色表示下降，绿色表示上升。“年”维度只有同比，没有环比，无法对比则展示为100%</p></div></article>
+      <article class="note-card right note-2" data-target-y="500"><div class="note-head"><span>2</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>销售趋势</h3><p><strong>本期：</strong>在当前筛选的时间维度下，该时间段内的销售总额。</p><p><strong>同期：</strong>在去年相同的时间段下的销售总额。</p><p><strong>横坐标：</strong>时间</p><p><strong>纵坐标：</strong>销售额</p></div></article>
+      <article class="note-card left note-3" data-target-y="780"><div class="note-head"><span>3</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>客流指标说明</h3><p><strong>顾客人数：</strong>需要去重，仅按相同优先级证件号&gt;手机号&gt;小票号计数，按日去重。</p><p><strong>进店人数：</strong>通过接口获取客流数据；</p><p><strong>转化率：</strong>顾客人数/进店人数；</p><p><strong>客单价：</strong>销售额/顾客人数；</p></div></article>
+      <article class="note-card right note-4" data-target-y="1010"><div class="note-head"><span>4</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>客流指标趋势</h3><p><strong>横坐标：</strong>时间</p><p><strong>纵坐标：</strong>对应的客流指标，如：进店人数、顾客人数、转化率、客单价</p></div></article>
+      <article class="note-card right note-5" data-target-y="1280"><div class="note-head"><span>5</span><button class="note-toggle" type="button">点击收起</button></div><div class="note-body"><h3>明细数据</h3><p><strong>顾客人数：</strong>需要去重，仅按相同优先级证件号&gt;手机号&gt;小票号计数，按日去重。</p><p><strong>进店人数：</strong>通过接口获取客流数据；</p><p><strong>转化率：</strong>顾客人数/进店人数；</p><p><strong>客单价：</strong>销售额/顾客人数；</p><p><strong>毛利率：</strong>(营业收入 - 不含税成本 + 供应商折扣)/营业收入</p><p>营业收入=成交金额-消费税-销售税；</p><p><strong>连带率：</strong>销售数量（扣减退货）/小票数量（扣减退货)；</p><p><strong>折扣率：</strong>销售额/售价金额，销售额即成交金额；</p><p><strong>营收占比：</strong>单品销售额/该单品所属品牌的销售额</p></div></article>
+    </aside>
   </main>
   <script src="script.js"></script>
 </body>
