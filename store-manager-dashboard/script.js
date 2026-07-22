@@ -287,10 +287,10 @@ $$('.overlay').forEach((overlay) => {
 });
 
 
-$$('.note-toggle').forEach((button) => {
-  button.addEventListener('click', () => {
-    const card = button.closest('.note-card');
-    const collapsed = card.classList.toggle('collapsed');
-    button.textContent = collapsed ? '点击展开' : '点击收起';
-  });
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('.note-toggle');
+  if (!button) return;
+  const card = button.closest('.note-card');
+  const collapsed = card.classList.toggle('collapsed');
+  button.textContent = collapsed ? '点击展开' : '点击收起';
 });
