@@ -161,6 +161,14 @@ function setDateLabel(label) {
   salesModeLabel.textContent = label.includes('年') ? '本年' : label.includes('月') ? '本月' : '本月';
 }
 
+function setAreaButtonVisible(visible) {
+  if (visible) {
+    if (!areaBtn.isConnected) storeBtn.insertAdjacentElement('afterend', areaBtn);
+  } else if (areaBtn.isConnected) {
+    areaBtn.remove();
+  }
+}
+
 function setStoreLabel(label) {
   state.store = label;
   let shortLabel = label;
@@ -171,7 +179,7 @@ function setStoreLabel(label) {
   storeBtn.innerHTML = `${shortLabel} <span>▼</span>`;
   storeBtn.title = label;
   storeBtn.classList.toggle('active', label !== '所有门店');
-  areaBtn.classList.toggle('invisible', !hasAreaFilter);
+  setAreaButtonVisible(hasAreaFilter);
   if (!hasAreaFilter) state.area = '全部';
   if (hasAreaFilter) setDimension('柜组');
   renderTable();
@@ -185,7 +193,7 @@ function setDimension(dimension) {
 }
 
 setDateLabel('昨日');
-areaBtn.classList.add('invisible');
+setAreaButtonVisible(false);
 salesPeriodBtn.hidden = false;
 salesPeriodBtn.style.display = '';
 renderSalesPeriodOptions();
