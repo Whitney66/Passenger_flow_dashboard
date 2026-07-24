@@ -4,6 +4,7 @@ const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 const dateBtn = $('#dateBtn');
 const storeBtn = $('#storeBtn');
 const areaBtn = $('#areaBtn');
+const areaDivider = $('.filters b');
 const searchBtn = $('#searchBtn');
 const metricBtn = $('#metricBtn');
 const salesPeriodBtn = $('#salesPeriodBtn');
@@ -162,11 +163,8 @@ function setDateLabel(label) {
 }
 
 function setAreaButtonVisible(visible) {
-  if (visible) {
-    if (!areaBtn.isConnected) storeBtn.insertAdjacentElement('afterend', areaBtn);
-  } else if (areaBtn.isConnected) {
-    areaBtn.remove();
-  }
+  areaBtn.style.display = visible ? '' : 'none';
+  if (areaDivider) areaDivider.style.display = visible ? '' : 'none';
 }
 
 function setStoreLabel(label) {
