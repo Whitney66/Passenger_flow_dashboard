@@ -186,6 +186,8 @@ function setDimension(dimension) {
 }
 
 setDateLabel('昨日');
+areaBtn.hidden = true;
+areaBtn.style.display = 'none';
 salesPeriodBtn.hidden = false;
 salesPeriodBtn.style.display = '';
 renderSalesPeriodOptions();
