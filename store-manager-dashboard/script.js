@@ -164,12 +164,17 @@ function setDateLabel(label) {
 function setStoreLabel(label) {
   state.store = label;
   let shortLabel = label;
+  const hasAreaFilter = /^\[(7222|7223)\]/.test(label);
   if (label.includes('[7222]')) shortLabel = '[7222]中免...';
+  else if (label.includes('[7223]')) shortLabel = '[7223]中免...';
   else if (label.length > 6) shortLabel = `${label.slice(0, 6)}...`;
   storeBtn.innerHTML = `${shortLabel} <span>▼</span>`;
   storeBtn.title = label;
   storeBtn.classList.toggle('active', label !== '所有门店');
-  if (label.includes('[7222]')) setDimension('柜组');
+  areaBtn.hidden = !hasAreaFilter;
+  areaBtn.style.display = hasAreaFilter ? '' : 'none';
+  if (!hasAreaFilter) state.area = '全部';
+  if (hasAreaFilter) setDimension('柜组');
   renderTable();
 }
 
