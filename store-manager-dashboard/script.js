@@ -171,8 +171,7 @@ function setStoreLabel(label) {
   storeBtn.innerHTML = `${shortLabel} <span>▼</span>`;
   storeBtn.title = label;
   storeBtn.classList.toggle('active', label !== '所有门店');
-  areaBtn.hidden = !hasAreaFilter;
-  areaBtn.style.display = hasAreaFilter ? '' : 'none';
+  areaBtn.classList.toggle('invisible', !hasAreaFilter);
   if (!hasAreaFilter) state.area = '全部';
   if (hasAreaFilter) setDimension('柜组');
   renderTable();
@@ -186,8 +185,7 @@ function setDimension(dimension) {
 }
 
 setDateLabel('昨日');
-areaBtn.hidden = true;
-areaBtn.style.display = 'none';
+areaBtn.classList.add('invisible');
 salesPeriodBtn.hidden = false;
 salesPeriodBtn.style.display = '';
 renderSalesPeriodOptions();
