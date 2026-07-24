@@ -163,8 +163,8 @@ function setDateLabel(label) {
 }
 
 function setAreaButtonVisible(visible) {
-  areaBtn.style.display = visible ? '' : 'none';
-  if (areaDivider) areaDivider.style.display = visible ? '' : 'none';
+  areaBtn.classList.toggle('invisible', !visible);
+  if (areaDivider) areaDivider.classList.toggle('invisible', !visible);
 }
 
 function setStoreLabel(label) {
